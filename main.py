@@ -1,4 +1,5 @@
 import logging
+from venv import logger
 
 from astrbot.api.event import filter, AstrMessageEvent
 from astrbot.api.star import Context, Star
@@ -16,7 +17,7 @@ class QiuXian(Star):
         group_id = event.get_group_id()
         set_state(event.get_sender_id(), "setUserName")
         set_temp(event.get_sender_id(), "group_id", group_id)
-        logging.info(f"用户: {user_name}，群组: {group_id}","触发创建角色命令")
+        logger.info(f"用户: {user_name}，群组: {group_id}","触发创建角色命令")
         yield event.plain_result(f"玩家: {user_name}，请输入您的角色名称：") # 发送一条纯文本消息
 
     @filter.event_message_type(EventMessageType.ALL)
