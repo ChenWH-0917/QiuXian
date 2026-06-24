@@ -23,3 +23,4 @@ class QiuXian(Star):
     async def  handle_user_messages(self, event: AstrMessageEvent):
         if get_state(event.get_sender_id()) == "setUserName":
             clear_state(event.get_sender_id())
+            yield event.plain_result(f"玩家: {event.get_sender_name()}，角色名称: {event.message_str}，请输入您的性别：")
